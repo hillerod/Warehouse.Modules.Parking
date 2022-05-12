@@ -9,14 +9,14 @@ param EasyParkUser string = ''
 @description('Is given from EasyPark and saved in Azure KeyVault')
 param EasyParkPassword string = ''
 @description('A json string that can contain multiple operators, where Id=OperatorId. Each operator can contain multiple areas. AreaNo is a number from Easypark. Parkings is how many parking slots there are in the area.')
-param EasyParkOperators string = '[{"Id": 1209, "CountryCode":"DK", "Areas":[{"AreaNo":3400, "Parkings":200}]}]'
+param EasyParkOperators string = '[{"Id": 1234, "CountryCode":"DK", "Areas":[{"AreaNo":3400, "Parkings":200}]}]'
 @description('How many months back, the data should be fetched')
 param EasyParkGoBackMonths string = '6'
 @description('How often this module should run. This example runs each night at 1AM UTC. Read more here: https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-timer?tabs=csharp#ncrontab-expressions')
 param scheduleExpression string = '0 0 1 * * *'
 @description('"Romance Standard Time" is Copenhagen. For other timezones, find them here: https://raw.githubusercontent.com/Bygdrift/Warehouse/master/Docs/TimeZoneIds.csv')
 param timeZoneId string = 'Romance Standard Time'
-param location string = resourceGroup().location
+// param location string = resourceGroup().location
 
 var appStorageConnectionString = 'DefaultEndpointsProtocol=https;AccountName=${appStorage.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${listKeys(appStorage.id, appStorage.apiVersion).keys[0].value}'
 var functionAppName = '${moduleName}-${uniqueString(resourceGroup().id)}'
@@ -56,7 +56,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' existing
 
 resource windowsHostingPlan 'Microsoft.Web/serverfarms@2020-10-01' = {
   name: 'windows-${uniqueString(resourceGroup().id)}'
-  location: location
+  location: resourceGroup().location
   kind: 'functionapp'
   sku: {
     name: 'Y1'
@@ -67,7 +67,7 @@ resource windowsHostingPlan 'Microsoft.Web/serverfarms@2020-10-01' = {
 resource functionApp 'Microsoft.Web/sites@2021-02-01' = {
   kind: 'functionapp'
   name: functionAppName
-  location: location
+  location: resourceGroup().location
   identity:{
     type: 'SystemAssigned'  //Key vault access: https://docs.microsoft.com/en-us/azure/app-service/overview-managed-identity?tabs=dotnet
   }
