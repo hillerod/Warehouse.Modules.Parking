@@ -24,7 +24,7 @@ namespace Module.Refines
 
         private static Csv CreateCsv(Parking[] data, int operatorId)
         {
-            var csv = new Csv("ParkingId, OperatorId, AreaNo, Start, End, AreaName, LicensNumber, ParkingFee, ParkingFeeVAT, Stopped, SpotNumber, SourceSystem, SubType, Lat, Lon");
+            var csv = new Csv("ParkingId, OperatorId, AreaNo, Start, End, AreaName, LicensNumber, ParkingFee, ParkingFeeVAT, Stopped, SpotNumber, SourceSystem, SubType, Latitude, Longitude");
             foreach (var i in data)
                 csv.AddRow(i.parkingId, operatorId, i.areaNo, i.startDate, i.endDate, i.areaName, i.licenseNumber, i.parkingFeeExclusiveVAT ?? 0, i.parkingFeeVAT ?? 0, i.stopped, i.spotNumber, i.sourceSystem, i.subType, i.latitude, i.longitude);
 
