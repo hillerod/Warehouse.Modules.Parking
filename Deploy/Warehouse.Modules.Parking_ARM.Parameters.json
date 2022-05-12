@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "EasyParkOperators": {
+            "value": "[{\"Id\": 1234, \"CountryCode\":\"DK\", \"Areas\":[{\"AreaNo\":3400, \"Parkings\":200}]}]"
+        },
+        "EasyParkGoBackMonths": {
+            "value": 24
+        },
+        "EasyParkUser": {
+            "value": "Username"
+        },
+        "EasyParkPassword": {
+            "value": "Password"
+        },
+        "ModuleName": {
+            "value": "Parking"
+        },
+        "ScheduleExpression": {
+            "value": "0 0 1 * * *"
+        },
+        "TimeZoneId": {
+            "value": "Romance Standard Time"
+        }
+    }
+}
