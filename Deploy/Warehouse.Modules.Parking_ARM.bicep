@@ -108,10 +108,6 @@ resource functionApp 'Microsoft.Web/sites@2021-02-01' = {
           value: EasyParkGoBackMonths
         }
         {
-          name: 'EasyParkOperators'
-          value: EasyParkOperators
-        }
-        {
           name: 'ScheduleExpression'
           value: scheduleExpression
         }

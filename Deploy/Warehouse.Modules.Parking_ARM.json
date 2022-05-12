@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.6.11.53198",
-      "templateHash": "6569966236018065207"
+      "templateHash": "12711676955490376224"
     }
   },
   "parameters": {
@@ -136,10 +136,6 @@
             {
               "name": "EasyParkGoBackMonths",
               "value": "[parameters('EasyParkGoBackMonths')]"
-            },
-            {
-              "name": "EasyParkOperators",
-              "value": "[parameters('EasyParkOperators')]"
             },
             {
               "name": "ScheduleExpression",
